@@ -1,0 +1,14 @@
+github_fetcher.settings:
+  path: '/admin/config/github-fetcher-settings'
+  defaults:
+    _form: '\Drupal\github_fetcher\Form\GitHubFetcherSettings'
+  requirements:
+    _permission: 'access content'
+
+github_fetcher.github_fetcher:
+  path: '/github-fetcher'
+  defaults:
+    _controller: '\Drupal\github_fetcher\Controller\GitHubFetcherController::getAPI'
+    _title: 'GitHub API fetcher'
+  requirements:
+    _permission: 'access content'

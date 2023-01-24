@@ -1,0 +1,19 @@
+name: GitHub fetcher
+description: Fetch data from GitHub API
+package: Custom (Experimental)
+# lifecycle: experimental
+
+type: module
+core_version_requirement: ^9.4 || ^10
+
+configure: github_fetcher.settings
+configure_parameters:
+  pluginId: github_fetcher_plugin
+
+
+# dependencies:
+#  - drupal:help
+
+# version: '10.0.1'
+# project: 'drupal'
+# datestamp: 123456789
