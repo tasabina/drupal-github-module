@@ -9,7 +9,7 @@ use Drupal\Core\Url;
 
 class GitHubFetcherSettings extends FormBase
 {
-    protected const GITHUB_API_VALUES = 'github_fetcher:values';
+    const GITHUB_API_VALUES = 'github_fetcher:values';
 
     public function getFormId(): string
     {
@@ -18,11 +18,8 @@ class GitHubFetcherSettings extends FormBase
 
     public function buildForm(array $form, FormStateInterface $form_state): array
     {
-        $values = \Drupal::state()->get(self::GITHUB_API_VALUES) ??
-                    [
-                        'repo_url' => '',
-                        'github_token' => '',
-                    ];
+        $values = \Drupal::state()->get(self::GITHUB_API_VALUES);
+
         $form['github_details'] = [
             '#type' => 'details',
             '#title' => $this->t('GitHub url & access token'),
@@ -35,6 +32,15 @@ class GitHubFetcherSettings extends FormBase
             '#description' => $this->t('Description'),
             '#required' => TRUE,
             '#default_value' => $values['repo_url'],
+        ];
+
+        $form['github_user'] = [
+            '#type' => 'textfield',
+            '#title' => $this->t('GitHub user'),
+            '#group' => 'github_details',
+            '#description' => $this->t('Description'),
+            '#required' => TRUE,
+            '#default_value' => $values['github_user'],
         ];
 
         $form['github_token'] = [
@@ -66,6 +72,9 @@ class GitHubFetcherSettings extends FormBase
     {
         if (strlen($form_state->getValue('repo_url')) < 1) {
             $form_state->setErrorByName('repo_url', $this->t('GitHub account URL is not set.'));
+        }
+        if (strlen($form_state->getValue('github_user')) < 1) {
+            $form_state->setErrorByName('github_user', $this->t('Github user is not set.'));
         }
         if (strlen($form_state->getValue('github_token')) < 1) {
             $form_state->setErrorByName('github_token', $this->t('Github token is not set.'));
