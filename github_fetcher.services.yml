@@ -1,0 +1,3 @@
+services:
+  github_fetcher.github_api_connector:
+    class: '\Drupal\github_fetcher\Connector\GitHubAPIConnector'
