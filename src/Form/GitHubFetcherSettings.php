@@ -43,6 +43,15 @@ class GitHubFetcherSettings extends FormBase
             '#default_value' => $values['github_user'],
         ];
 
+        $form['github_user'] = [
+            '#type' => 'textfield',
+            '#title' => $this->t('GitHub user'),
+            '#group' => 'github_details',
+            '#description' => $this->t('Description'),
+            '#required' => TRUE,
+            '#default_value' => $values['github_user'],
+        ];
+
         $form['github_token'] = [
             '#type' => 'textfield',
             '#title' => $this->t('GitHub token'),
@@ -72,6 +81,9 @@ class GitHubFetcherSettings extends FormBase
     {
         if (strlen($form_state->getValue('repo_name')) < 1) {
             $form_state->setErrorByName('repo_name', $this->t('GitHub account URL is not set.'));
+        }
+        if (strlen($form_state->getValue('github_user')) < 1) {
+            $form_state->setErrorByName('github_user', $this->t('Github user is not set.'));
         }
         if (strlen($form_state->getValue('github_user')) < 1) {
             $form_state->setErrorByName('github_user', $this->t('Github user is not set.'));

@@ -93,7 +93,7 @@ class GitHubAPIConnector
             $json = $this->fetch_json("https://api.github.com/repos/$this->repo_url/branches");
             $lastVersion = $this->identifyLastBranch($json);
             
-            $json_responce = $this->fetch_json("https://raw.githubusercontent.com/$github/$lastVersion/composer.json");
+            $json_responce = $this->fetch_json("https://raw.githubusercontent.com/$this->repo_url/$lastVersion/composer.json");
             // $j = $this->fetch_json("https://raw.githubusercontent.com/$githubCC/pulls/$lastVersion/upgrade-cms5/composer.json");
             
             return $this->dump_json($this->outputFormat($lastVersion, $json_responce));
